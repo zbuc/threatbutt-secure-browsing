@@ -15,15 +15,29 @@
 			margin: auto;
 			text-align: center;
 		}
+
+		@-webkit-keyframes blinker {  
+		  from { opacity: 1.0; }
+		  to { opacity: 0.0; }
+		}
+
+		.css3-blink {
+		  -webkit-animation-name: blinker;  
+		  -webkit-animation-iteration-count: infinite;  
+		  -webkit-animation-timing-function: cubic-bezier(1.0,0,0,1.0);
+		  -webkit-animation-duration: 1s; 
+		}
 		</style>
 	</head>
 	<body>
 		<div class="content">
 			<h2>Threatbutt Secure Browsing™</h2>
 			<img src='logo.png' />
-			<h2 class="blink" style="color:red"><marquee><blink>THREAT DETECTED</blink></marquee></h2>
-			<p id="ioc"></p>
-			<p id="attribution"></p>
+			<h2 class="css3-blink" style="color:red"><marquee><span id="is_threat">THREAT DETECTED</span></marquee></h2>
+			<span id="threat_details">
+				<p id="ioc"></p>
+				<p id="attribution"></p>
+			</span>
 		</div>
 	</body>
 

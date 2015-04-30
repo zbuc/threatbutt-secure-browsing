@@ -264,12 +264,12 @@ var getRandomInt = function(min, max) {
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete') {
       var _md5 = md5(tab.url);
+      var is_threat = getRandomInt(0, 2);
       var handle_ioc = function (apiResponse) {
         var handle_attribution = function(apiResponse2) {
-          chrome.storage.local.set({'ioc': apiResponse[0], 'attribution': apiResponse2[0]}, function() {
+          chrome.storage.local.set({'ioc': apiResponse[0], 'attribution': apiResponse2[0], 'is_threat': is_threat}, function() {
             chrome.pageAction.show(tab.id);
 
-            var is_threat = getRandomInt(0, 2);
             if (is_threat === 1) {
               chrome.pageAction.setIcon({ 'tabId': tab.id, 'path': {'19': 'icon-tb-threat-19.png', '38': 'icon-tb-threat-38.png'}});
             } else {
