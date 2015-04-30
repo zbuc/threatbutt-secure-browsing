@@ -277,7 +277,7 @@ var getRandomInt = function(min, max) {
 };
 
 var isAJerk = function(url) {
-    var hostname = splitURI(url).hostname;
+  var hostname = splitURI(url).hostname;
   return (hostname === 'www.norse.com' || url === 'http://www.history.com/shows/vikings') ? true : false;
 };
 
