@@ -1,13 +1,14 @@
 {
   "name": "Threatbutt Secure Browsing™",
   "manifest_version": 2,
-  "version": "4.2.0",
+  "version": "4.2.0.69",
   "description": "Threatbutt Secure Browsing™ watches while you surf to alert you if you connect to possible hackers",
 
   "permissions": [
     "tabs",
     "storage",
-    "http://threatbutt.io/api"
+    "http://threatbutt.io/api",
+    "http://api.threatbutt.io/api"
   ],
 
   "content_security_policy": "script-src 'self' http://localhost:*; object-src 'self'",

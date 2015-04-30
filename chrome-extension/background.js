@@ -1,5 +1,5 @@
-var IP_API = 'http://threatbutt.io/api';
-var IOC_API = 'http://threatbutt.io/api/md5';
+var IP_API = 'http://api.threatbutt.io/api';
+var IOC_API = 'http://api.threatbutt.io/api/md5';
 
 function md5cycle(x, k) {
 var a = x[0], b = x[1], c = x[2], d = x[3];
