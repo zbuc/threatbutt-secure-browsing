@@ -260,7 +260,7 @@ var splitURI = function(uri) {
   };
 };
 
-var generic_responder = function(callback) {
+var genericResponder = function(callback) {
   return [
     function(data) {
       callback(data);
@@ -278,7 +278,7 @@ var getRandomInt = function(min, max) {
 
 var isAJerk = function(url) {
     var hostname = splitURI(url).hostname;
-  return (hostname === 'www.crunchbase.com') ? true : false;
+  return (hostname === 'www.norse.com' || url === 'http://www.history.com/shows/vikings') ? true : false;
 };
 
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
@@ -301,9 +301,9 @@ chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
           });
         };
         var promise = http(IP_API).post({ 'url': tab.url });
-        promise.then.apply(promise, generic_responder(handle_attribution));
+        promise.then.apply(promise, genericResponder(handle_attribution));
       };
       var promise = http(IOC_API + '/' + _md5).post();
-      promise.then.apply(promise, generic_responder(handle_ioc));
+      promise.then.apply(promise, genericResponder(handle_ioc));
     }
 });
