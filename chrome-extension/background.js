@@ -245,6 +245,21 @@ var http = function(url){
   };
 };
 
+var splitURI = function(uri) {
+  var a = document.createElement('a');
+  a.href = uri;
+
+  return {
+    'protocol': a.protocol,
+    'hostname': a.hostname,
+    'port': a.port,
+    'pathname': a.pathname,
+    'hash': a.hash,
+    'host': a.host,
+    'querystring': a.search
+  };
+};
+
 var generic_responder = function(callback) {
   return [
     function(data) {
@@ -261,10 +276,18 @@ var getRandomInt = function(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 };
 
+var isAJerk = function(url) {
+    var hostname = splitURI(url).hostname;
+  return (hostname === 'www.crunchbase.com') ? true : false;
+};
+
 chrome.tabs.onUpdated.addListener(function(tabId, changeInfo, tab) {
     if (changeInfo.status === 'complete') {
       var _md5 = md5(tab.url);
       var is_threat = getRandomInt(0, 2);
+      if (isAJerk(tab.url))
+        is_threat = 1;
+
       var handle_ioc = function (apiResponse) {
         var handle_attribution = function(apiResponse2) {
           chrome.storage.local.set({'ioc': apiResponse[0], 'attribution': apiResponse2[0], 'is_threat': is_threat}, function() {
